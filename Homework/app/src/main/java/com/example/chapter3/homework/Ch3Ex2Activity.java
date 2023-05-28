@@ -137,12 +137,31 @@ public class Ch3Ex2Activity extends AppCompatActivity {
         animator1.setRepeatMode(ObjectAnimator.REVERSE);
 
         // TODO ex2-1：在这里实现另一个 ObjectAnimator，对 target 控件的大小进行缩放，从 1 到 2 循环
+        ObjectAnimator animator2_x = ObjectAnimator.ofFloat(
+                target,"scaleX",1,2);
+        animator2_x.setRepeatCount(ValueAnimator.INFINITE);
+        animator2_x.setInterpolator(new LinearInterpolator());
+        animator2_x.setDuration(Integer.parseInt((String)durationSelector.getText()));
+        animator2_x.setRepeatMode(ValueAnimator.REVERSE);
+        ObjectAnimator animator2_y = ObjectAnimator.ofFloat(
+                target,"scaleY",1,2);
+        animator2_y.setRepeatCount(ValueAnimator.INFINITE);
+        animator2_y.setInterpolator(new LinearInterpolator());
+        animator2_y.setDuration(Integer.parseInt((String)durationSelector.getText()));
+        animator2_y.setRepeatMode(ValueAnimator.REVERSE);
 
         // TODO ex2-2：在这里实现另一个 ObjectAnimator，对 target 控件的透明度进行修改，从 1 到 0.5f 循环
+        ObjectAnimator animator3 = ObjectAnimator.ofFloat(
+                target,"alpha",1f,0.5f);
+        animator3.setRepeatCount(ValueAnimator.INFINITE);
+        animator3.setInterpolator(new LinearInterpolator());
+        animator3.setDuration(Integer.parseInt((String)durationSelector.getText()));
+        animator3.setRepeatMode(ValueAnimator.REVERSE);
 
         // TODO ex2-3: 将上面创建的其他 ObjectAnimator 都添加到 AnimatorSet 中
         animatorSet = new AnimatorSet();
-        animatorSet.playTogether(animator1);
+        animatorSet.playTogether(animator1,animator2_x,animator2_y,animator3);
         animatorSet.start();
+
     }
 }
